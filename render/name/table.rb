@@ -1,17 +1,24 @@
 module Render
   module Name
     class Table
+      attr_reader :data
 
-      def self.call(data)
-        header
-        body(data)
+      def initialize(data:)
+        @data = data
       end
 
-      def self.header
+      def call
+        header
+        body
+      end
+
+      private
+
+      def header
         puts "Decadas | Frequencia de uso"
       end
 
-      def self.body(data)
+      def body
         data.each do |frequency|
           puts "#{frequency[:periodo].ljust(7)} | #{frequency[:frequencia]}"
         end
